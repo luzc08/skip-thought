@@ -25,8 +25,8 @@ if sys.argv[1]=='train':
     model = skipthoughts.load_model()
 
     train_vectors = pickle.load( open( "vectors.p", "rb" ) )
-
-    train_vectors = skipthoughts.encode(model,train_sentences)
+    train_label = pickle.load( open( "labels.p", "rb" ))
+    #train_vectors = skipthoughts.encode(model,train_sentences)
     AZmodel = svm_train(train_label,train_vectors)
     svm_save_model('AZ.model', AZmodel)
 
