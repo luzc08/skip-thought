@@ -35,8 +35,10 @@ if sys.argv[1]=='predict':
     AZmodel = svm_load_model('AZ.model')
     train_vectors = pickle.load( open( "vectors.p", "rb" )).tolist()
     train_label = pickle.load( open( "labels.p", "rb" ))
-    p_labels, p_acc, p_vals = svm_predict(train_label, train_vectors, AZmodel)
+    p_labels, p_acc, p_vals = svm_predict(train_label[0:2000], train_vectors[0:2000], AZmodel)
+
     #p_labels, p_acc, p_vals = svm_predict(train_label[0:1000], train_vectors[0:1000], AZmodel)
-    for idx in range(0,len(p_labels)):
-        print train_label[idx],p_labels[idx]
-    (ACC, MSE, SCC) = evaluations(train_label[0:len(p_labels)], p_labels)
+    # for idx in range(0,len(p_labels)):
+    #     print train_label[idx],p_labels[idx]
+    pickle.dump( p_labels, open("predict_labels.p", "wb"))
+    #(ACC, MSE, SCC) = evaluations(train_label[0:len(p_labels)], p_labels)
