@@ -31,4 +31,9 @@ if sys.argv[1]=='train':
     svm_save_model('AZ.model', AZmodel)
 
 if sys.argv[1]=='predict':
-    model = skipthoughts.load_model()
+    #model = skipthoughts.load_model()
+    AZmodel = svm_load_model('AZ.model')
+    train_vectors = pickle.load( open( "vectors.p", "rb" )).tolist()
+    train_label = pickle.load( open( "labels.p", "rb" ))
+    p_labs, p_acc, p_vals = svm_predict(train_label[1:200], train_vectors[1:200], AZmodel)
+    (ACC, MSE, SCC) = evaluations(train_label, p_vals)
