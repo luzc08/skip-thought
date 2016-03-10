@@ -1,7 +1,10 @@
 import skipthoughts
 from nlp_modules import *
 import cPickle as pickle
-from libsvm.python.svmutil import *
+import sys
+sys.path.insert(0, 'libsvm/python/')
+#from libsvm.python.svmutil import *
+from svmutil import *
 
 model = skipthoughts.load_model()
 
