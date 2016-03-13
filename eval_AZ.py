@@ -48,8 +48,8 @@ def load_data():
     """
     Load the TREC question-type dataset
     """
-    train_sentences = pickle.load( open( "sentences.p", "rb" ))
-    train_label = pickle.load( open( "labels.p", "rb" ))
+    train_sentences = pickle.load(open("sentences.p", "rb"))
+    train_label = np.array(pickle.load(open("labels.p", "rb")))
 
     train = train_sentences[0:9000]
     train_labels = train_label[0:9000]
