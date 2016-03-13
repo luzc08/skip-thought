@@ -1,5 +1,5 @@
 '''
-Evaluation code for the TREC dataset
+Evaluation code for the AZ dataset
 '''
 import numpy as np
 import skipthoughts
@@ -32,7 +32,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
 
     if evaltest:
         if not evalcv:
-            C = 128     # Best parameter found from CV
+            C = 16     # Best parameter found from CV
 
         print 'Computing testing skipthoughts...'
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
