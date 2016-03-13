@@ -38,7 +38,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
 
         print 'Evaluating...'
-        clf = LogisticRegression(C=C)
+        clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
         clf.fit(trainF, train_labels)
         yhat = clf.predict(testF)
         pickle.dump( yhat, open("test_labels.p", "wb"))
@@ -80,7 +80,7 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             y_test = labels[test]
 
             # Train classifier
-            clf = LogisticRegression(C=s)
+            clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
             clf.fit(X_train, y_train)
             score = clf.score(X_test, y_test)
             scanscores.append(score)
