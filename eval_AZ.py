@@ -5,6 +5,7 @@ import numpy as np
 import skipthoughts
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import SGDClassifier
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
 import cPickle as pickle
@@ -34,7 +35,8 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
 
     if evaltest:
         if not evalcv:
-            C = 16     # Best parameter found from CV
+            #C = 16     # Best parameter found from CV
+            C = 1e-3
 
         print 'Computing testing skipthoughts...'
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
@@ -42,7 +44,9 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
         print 'Evaluating...'
         # clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
         # clf.fit(trainF, train_labels)
-        clf = MultinomialNB().fit(trainF, train_labels)
+
+        #clf = MultinomialNB().fit(trainF, train_labels)
+        clf = SGDClassifier(loss='hinge', penalty='l2', alpha=C, n_iter=5, random_state=seed)
         yhat = clf.predict(testF)
         pickle.dump( yhat, open("test_labels.p", "wb"))
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
@@ -70,6 +74,8 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
     kf = KFold(npts, n_folds=k, random_state=seed)
     scores = []
 
+    scan = [1e-2, 1e-3]
+
     for s in scan:
 
         scanscores = []
@@ -86,6 +92,9 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             #clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
             #clf.fit(X_train, y_train)
             # clf = MultinomialNB().fit(X_train, y_train)
+
+            clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
+            clf.fit(X_train, y_train)
 
             score = clf.score(X_test, y_test)
             scanscores.append(score)
