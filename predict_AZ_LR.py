@@ -23,11 +23,11 @@ def preprocess(text):
     sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
     for t in text:
         sents = sent_detector.tokenize(t)
-        result = ''
-        for s in sents:
-            tokens = word_tokenize(s)
-            result += ' ' + ' '.join(tokens)
-        X.append(result)
+        # result = ''
+        # for s in sents:
+        #     tokens = word_tokenize(s)
+        #     result += ' ' + ' '.join(tokens)
+        X += sents
     return X
 
 if __name__ == "__main__":
