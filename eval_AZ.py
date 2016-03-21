@@ -47,6 +47,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
 
         #clf = MultinomialNB().fit(trainF, train_labels)
         clf = SGDClassifier(loss='hinge', penalty='l2', alpha=C, n_iter=5, random_state=seed)
+        clf.fit(trainF, train_labels)
         yhat = clf.predict(testF)
         pickle.dump( yhat, open("test_labels.p", "wb"))
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
