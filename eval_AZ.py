@@ -53,10 +53,10 @@ def load_data():
     train_sentences = pickle.load(open("sentences.p", "rb"))
     train_label = np.array(pickle.load(open("labels.p", "rb")))
 
-    train = train_sentences[0:9000]
-    train_labels = train_label[0:9000]
-    test = train_sentences[9001:]
-    test_labels = train_label[9001:]
+    train = train_sentences[0:7500]
+    train_labels = train_label[0:7500]
+    test = train_sentences[7501:]
+    test_labels = train_label[7501:]
 
     return train, train_labels, test, test_labels
 
