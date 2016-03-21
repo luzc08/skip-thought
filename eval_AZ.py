@@ -35,21 +35,22 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
 
     if evaltest:
         if not evalcv:
-            #C = 16     # Best parameter found from CV
-            C = 1e-3
+            C = 16     # Best parameter found from CV
+            #C = 1e-3
 
         print 'Computing testing skipthoughts...'
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
 
         print 'Evaluating...'
-        # clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-        # clf.fit(trainF, train_labels)
+        clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+        clf.fit(trainF, train_labels)
 
         #clf = MultinomialNB().fit(trainF, train_labels)
-        clf = SGDClassifier(loss='hinge', penalty='l2', alpha=C, n_iter=5, random_state=seed)
-        clf.fit(trainF, train_labels)
+        # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=C, n_iter=5, random_state=seed)
+        # clf.fit(trainF, train_labels)
         yhat = clf.predict(testF)
         pickle.dump( yhat, open("test_labels.p", "wb"))
+        pickle.dump( clf, open("LRModel.p","wb"))
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
 
 
