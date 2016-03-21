@@ -4,6 +4,7 @@ Evaluation code for the AZ dataset
 import numpy as np
 import skipthoughts
 from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import MultinomialNB
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
 import cPickle as pickle
@@ -39,8 +40,9 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
 
         print 'Evaluating...'
-        clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-        clf.fit(trainF, train_labels)
+        # clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+        # clf.fit(trainF, train_labels)
+        clf = MultinomialNB().fit(trainF, train_labels)
         yhat = clf.predict(testF)
         pickle.dump( yhat, open("test_labels.p", "wb"))
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
@@ -81,8 +83,10 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             y_test = labels[test]
 
             # Train classifier
-            clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-            clf.fit(X_train, y_train)
+            #clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+            #clf.fit(X_train, y_train)
+            # clf = MultinomialNB().fit(X_train, y_train)
+
             score = clf.score(X_test, y_test)
             scanscores.append(score)
             print (s, score)
