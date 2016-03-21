@@ -10,7 +10,7 @@ import nltk
 from nltk.tokenize import word_tokenize
 
 def predict_AZ(model,sentences):
-    clf = pickle.load(open("LR  Model.p", "rb"))
+    clf = pickle.load(open("LRModel.p", "rb"))
     vectors = skipthoughts.encode(model, sentences, verbose=False, use_eos=False)
     yhat = clf.predict(vectors)
     return yhat
