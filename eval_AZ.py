@@ -27,8 +27,8 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
     
     if evalcv:
         print 'Running cross-validation...'
-        #interval = [2**t for t in range(0,9,1)]     # coarse-grained
-        interval = [t for t in range(1,20,1)]
+        interval = [2**t for t in range(0,9,1)]     # coarse-grained
+        #interval = [t for t in range(1,20,1)]
         C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed)
 
     if evaltest:
