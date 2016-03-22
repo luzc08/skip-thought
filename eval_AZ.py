@@ -76,7 +76,7 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
     kf = KFold(npts, n_folds=k, random_state=seed)
     scores = []
 
-    scan = [1e-2, 1e-3]
+    #scan = [1e-2, 1e-3]
 
     for s in scan:
 
@@ -91,12 +91,12 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             y_test = labels[test]
 
             # Train classifier
-            #clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-            #clf.fit(X_train, y_train)
+            clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+            clf.fit(X_train, y_train)
             # clf = MultinomialNB().fit(X_train, y_train)
 
-            clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
-            clf.fit(X_train, y_train)
+            # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
+            # clf.fit(X_train, y_train)
 
             score = clf.score(X_test, y_test)
             scanscores.append(score)
