@@ -35,7 +35,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
 
     if evaltest:
         if not evalcv:
-            C = 16     # Best parameter found from CV
+            C = 8     # Best parameter found from CV
             #C = 1e-3
 
         print 'Computing testing skipthoughts...'
