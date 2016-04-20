@@ -6,12 +6,14 @@ import skipthoughts
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
+from sklearn import svm
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
 import cPickle as pickle
 
+#Classifiers: LG, NB, SVM?
 
-def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
+def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG'):
     """
     Run experiment
     k: number of CV folds
@@ -31,7 +33,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
         print 'Running cross-validation...'
         interval = [2**t for t in range(0,9,1)]     # coarse-grained
         #interval = [t for t in range(1,20,1)]
-        C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed)
+        C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed, classifier=classifier)
 
     if evaltest:
         if not evalcv:
@@ -42,15 +44,23 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
 
         print 'Evaluating...'
-        clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-        clf.fit(trainF, train_labels)
+        if classifier=='LG':
+            clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+            clf.fit(trainF, train_labels)
+            yhat = clf.predict(testF)
+            pickle.dump(yhat, open("LR_test_labels.p", "wb"))
+            pickle.dump(clf, open("LRModel.p", "wb"))
 
+        if classifier=='SVM':
+            clf = svm.SVC(decision_function_shape='ovo')
+            clf.fit(trainF, train_labels)
+            yhat = clf.predict(testF)
+            pickle.dump(yhat, open("SVM_test_labels.p", "wb"))
+            pickle.dump(clf, open("SVM_Model.p", "wb"))
         #clf = MultinomialNB().fit(trainF, train_labels)
         # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=C, n_iter=5, random_state=seed)
         # clf.fit(trainF, train_labels)
-        yhat = clf.predict(testF)
-        pickle.dump( yhat, open("test_labels.p", "wb"))
-        pickle.dump( clf, open("LRModel.p","wb"))
+
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
 
 
@@ -68,7 +78,7 @@ def load_data():
 
     return train, train_labels, test, test_labels
 
-def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1234):
+def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1234, classifier='LG'):
     """
     Perform k-fold cross validation
     """
@@ -90,18 +100,21 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             X_test = features[test]
             y_test = labels[test]
 
-            # Train classifier
-            clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-            clf.fit(X_train, y_train)
+            if classifier=='LG':
+                # Train classifier
+                clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+                clf.fit(X_train, y_train)
             # clf = MultinomialNB().fit(X_train, y_train)
 
-            # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
-            # clf.fit(X_train, y_train)
+            if classifier=='SVM':
+                clf = svm.SVC(decision_function_shape='ovo')
+                clf.fit(X_train, y_train)
+                # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
+                # clf.fit(X_train, y_train)
 
             score = clf.score(X_test, y_test)
             scanscores.append(score)
             print (s, score)
-
         # Append mean score
         scores.append(np.mean(scanscores))
         print scores
