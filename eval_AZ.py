@@ -118,6 +118,8 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
 
 
     if classifier == 'SVM':
+        scanscores = []
+        
         for train, test in kf:
             # Split data
             X_train = features[train]
