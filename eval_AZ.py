@@ -134,7 +134,7 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             clf.fit(X_train, y_train)
             score = clf.score(X_test, y_test)
             scanscores.append(score)
-            print (s, score)
+            #print (s, score)
 
         #scores.append(np.mean(scanscores))
         print np.mean(scanscores)
