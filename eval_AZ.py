@@ -88,37 +88,51 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
 
     #scan = [1e-2, 1e-3]
 
-    for s in scan:
+    if classifier == 'LG':
+        for s in scan:
 
-        scanscores = []
+            scanscores = []
 
+            for train, test in kf:
+
+                # Split data
+                X_train = features[train]
+                y_train = labels[train]
+                X_test = features[test]
+                y_test = labels[test]
+
+
+                    # Train classifier
+                clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
+                clf.fit(X_train, y_train)
+                # clf = MultinomialNB().fit(X_train, y_train)
+                    # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
+                    # clf.fit(X_train, y_train)
+
+                score = clf.score(X_test, y_test)
+                scanscores.append(score)
+                print (s, score)
+            # Append mean score
+            scores.append(np.mean(scanscores))
+            print scores
+
+
+    if classifier == 'SVM':
         for train, test in kf:
-
             # Split data
             X_train = features[train]
             y_train = labels[train]
             X_test = features[test]
             y_test = labels[test]
 
-            if classifier=='LG':
-                # Train classifier
-                clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
-                clf.fit(X_train, y_train)
-            # clf = MultinomialNB().fit(X_train, y_train)
-
-            if classifier=='SVM':
-                clf = svm.SVC(decision_function_shape='ovo')
-                clf.fit(X_train, y_train)
-                # clf = SGDClassifier(loss='hinge', penalty='l2', alpha=s, n_iter=5, random_state=seed)
-                # clf.fit(X_train, y_train)
-
+            clf = svm.SVC(decision_function_shape='ovo')
+            clf.fit(X_train, y_train)
             score = clf.score(X_test, y_test)
             scanscores.append(score)
             print (s, score)
-        # Append mean score
-        scores.append(np.mean(scanscores))
-        print scores
 
+        #scores.append(np.mean(scanscores))
+        print np.mean(scanscores)
     # Get the index of the best score
     s_ind = np.argmax(scores)
     s = scan[s_ind]
