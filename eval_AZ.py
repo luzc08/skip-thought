@@ -10,6 +10,7 @@ from sklearn import svm
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
 import cPickle as pickle
+import nbsvm
 
 #Classifiers: LG, NB, SVM?
 
@@ -141,3 +142,29 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
         return 0
     # Get the index of the best score
 
+def pre_mapping(y,target_y):
+    """
+    premapping labels to one-v-all
+    """
+    labels = [pre_one_vs_all(t,target_y) for t in y]
+    return labels
+
+def pre_one_vs_all(t,target):
+    if t==target:
+        return 0
+    else:
+        return 1
+
+def compute_nb(X, y, Z):
+    """
+    Compute NB features
+    """
+    labels = [int(t) for t in y]
+    ptrain = [X[i] for i in range(len(labels)) if labels[i] == 0]
+    ntrain = [X[i] for i in range(len(labels)) if labels[i] == 1]
+    poscounts = nbsvm.build_dict(ptrain, [1,2])
+    negcounts = nbsvm.build_dict(ntrain, [1,2])
+    dic, r = nbsvm.compute_ratio(poscounts, negcounts)
+    trainX = nbsvm.process_text(X, dic, r, [1,2])
+    devX = nbsvm.process_text(Z, dic, r, [1,2])
+    return trainX, devX
