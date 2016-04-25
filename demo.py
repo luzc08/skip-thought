@@ -38,11 +38,11 @@ if __name__ == "__main__":
         test0 = [x]
         #print x.split()
         sent = preprocess(test0)
-        print sent
+        #print sent
         #print sent
 
         k = predict_AZ(model, sent, clf)
         annotations = [tags[x] for x in k]
         for idx, s in enumerate(sent):
-            print s
-            print annotations[idx]
+            #print s
+            print 'AZ_Result: ', annotations[idx]
