@@ -110,10 +110,10 @@ def eval_kfold(features, labels, train_text, k=10, scan=[2**t for t in range(0,9
 
                 # Split data
                 X_train = features[train]
-                X_train_text = train_text[train]
+                X_train_text = [train_text[i] for i in train]
                 y_train = labels[train]
                 X_test = features[test]
-                X_test_text = train_text[train]
+                X_test_text = [train_text[i] for i in test]
                 y_test = labels[test]
 
                 if nb_feature:
