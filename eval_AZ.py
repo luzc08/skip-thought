@@ -16,7 +16,12 @@ import nbsvm
 
 #Classifiers: LG, NB, SVM?
 
-def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG', nb_feature=False):
+# 5: Method 1: Conclusion 3:Result 0: Background
+annotations = [5, 1, 3, 0]
+annotations_name = ['Method', 'Conclusion', 'Result', 'Background']
+
+
+def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG', nb_feature=False, nb_tag=0):
     """
     Run experiment
     k: number of CV folds
@@ -26,9 +31,9 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
 
     [train, train_labels, test, test_labels] = load_data()
     if nb_feature:
-        print 'calculating NB feature'
-        train_labels = pre_mapping(train_labels, 5)
-        test_labels = pre_mapping(test_labels, 5)
+        #print 'calculating NB feature'
+        train_labels = pre_mapping(train_labels, annotations[nb_tag])
+        test_labels = pre_mapping(test_labels, annotations[nb_tag])
     train, train_labels = shuffle(train, train_labels, random_state=seed)
 
     print 'Computing training skipthoughts...'
@@ -52,7 +57,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
         print 'Evaluating...'
         if classifier=='LG':
             if nb_feature:
-                print 'calculating NB feature'
+                #print 'calculating NB feature'
                 NBtrain, NBtest = compute_nb(train, train_labels, test)
                 trainF = hstack((trainF, NBtrain))
                 testF = hstack((testF, NBtest))
@@ -60,8 +65,8 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
             clf.fit(trainF, train_labels)
             yhat = clf.predict(testF)
             if nb_feature:
-                pickle.dump(yhat, open("LR_test_labels_nb.p", "wb"))
-                pickle.dump(clf, open("LRModel_nb.p", "wb"))
+                pickle.dump(yhat, open("/data2/luzhc/"+"LR_test_labels_nb_"+annotations_name[nb_tag]+".p", "wb"))
+                pickle.dump(clf, open("/data2/luzhc/"+"LRModel_nb"+annotations_name[nb_tag]+".p", "wb"))
             else:
                 pickle.dump(yhat, open("LR_test_labels.p", "wb"))
                 pickle.dump(clf, open("LRModel.p", "wb"))
@@ -78,7 +83,10 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
 
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
         target_names = ['Background','Conclusion', 'Problem', 'Result', 'Connection', 'Method', 'Difference','Future-work']
-        print(classification_report(test_labels, yhat, target_names=target_names))
+        if nb_feature:
+            print(classification_report(test_labels, yhat, target_names=[annotations_name[nb_tag], 'Others']))
+        else:
+            print(classification_report(test_labels, yhat, target_names=target_names))
 
 
 def load_data():
@@ -121,7 +129,7 @@ def eval_kfold(features, labels, train_text, k=10, scan=[2**t for t in range(0,9
                 y_test = labels[test]
 
                 if nb_feature:
-                    print 'calculating NB feature'
+                    #print 'calculating NB feature'
                     NBtrain, NBtest = compute_nb(X_train_text, y_train, X_test_text)
                     X_train = hstack((X_train, NBtrain))
                     X_test = hstack((X_test, NBtest))
