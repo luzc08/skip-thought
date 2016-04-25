@@ -39,7 +39,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
         interval = [2**t for t in range(0,9,1)]     # coarse-grained
         #interval = [t for t in range(1,20,1)]
         print train_labels
-        C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed, classifier=classifier, nb_feature=nb_feature)
+        C = eval_kfold(trainF, train_labels, train, k=k, scan=interval, seed=seed, classifier=classifier, nb_feature=nb_feature)
 
     if evaltest:
         if not evalcv:
@@ -53,7 +53,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
         if classifier=='LG':
             if nb_feature:
                 print 'calculating NB feature'
-                NBtrain, NBtest = compute_nb(trainF, train_labels, testF)
+                NBtrain, NBtest = compute_nb(train, train_labels, test)
                 trainF = hstack((trainF, NBtrain))
                 testF = hstack((testF, NBtest))
             clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
@@ -91,7 +91,7 @@ def load_data():
 
     return train, train_labels, test, test_labels
 
-def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1234, classifier='LG', nb_feature = False):
+def eval_kfold(features, labels, train_text, k=10, scan=[2**t for t in range(0,9,1)], seed=1234, classifier='LG', nb_feature = False):
     """
     Perform k-fold cross validation
     """
@@ -110,13 +110,15 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
 
                 # Split data
                 X_train = features[train]
+                X_train_text = train_text[train]
                 y_train = labels[train]
                 X_test = features[test]
+                X_test_text = train_text[train]
                 y_test = labels[test]
 
                 if nb_feature:
                     print 'calculating NB feature'
-                    NBtrain, NBtest = compute_nb(X_train, y_train, X_test)
+                    NBtrain, NBtest = compute_nb(X_train_text, y_train, X_test_text)
                     X_train = hstack((X_train, NBtrain))
                     X_test = hstack((X_test, NBtest))
                     # Train classifier
