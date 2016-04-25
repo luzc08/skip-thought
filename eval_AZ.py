@@ -6,6 +6,7 @@ import skipthoughts
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import SGDClassifier
+from scipy.sparse import hstack
 from sklearn import svm
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
@@ -15,7 +16,7 @@ import nbsvm
 
 #Classifiers: LG, NB, SVM?
 
-def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG'):
+def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG', nb_feature=False):
     """
     Run experiment
     k: number of CV folds
@@ -24,8 +25,10 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
     print 'Preparing data...'
 
     [train, train_labels, test, test_labels] = load_data()
-    #train_labels = prepare_labels(train_labels)
-    #test_labels = prepare_labels(test_labels)
+    if nb_feature:
+        print 'calculating NB feature'
+        train_labels = pre_mapping(train_labels, 5)
+        test_labels = pre_mapping(test_labels, 5)
     train, train_labels = shuffle(train, train_labels, random_state=seed)
 
     print 'Computing training skipthoughts...'
@@ -35,7 +38,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
         print 'Running cross-validation...'
         interval = [2**t for t in range(0,9,1)]     # coarse-grained
         #interval = [t for t in range(1,20,1)]
-        C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed, classifier=classifier)
+        C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed, classifier=classifier, nb_feature=nb_feature)
 
     if evaltest:
         if not evalcv:
@@ -47,6 +50,11 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
 
         print 'Evaluating...'
         if classifier=='LG':
+            if nb_feature:
+                print 'calculating NB feature'
+                NBtrain, NBtest = compute_nb(trainF, train_labels, testF)
+                trainF = hstack((trainF, NBtrain))
+                testF = hstack((testF, NBtest))
             clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
             clf.fit(trainF, train_labels)
             yhat = clf.predict(testF)
@@ -82,7 +90,7 @@ def load_data():
 
     return train, train_labels, test, test_labels
 
-def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1234, classifier='LG'):
+def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1234, classifier='LG', nb_feature = False):
     """
     Perform k-fold cross validation
     """
@@ -105,7 +113,11 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
                 X_test = features[test]
                 y_test = labels[test]
 
-
+                if nb_feature:
+                    print 'calculating NB feature'
+                    NBtrain, NBtest = compute_nb(X_train, y_train, X_test)
+                    X_train = hstack((X_train, NBtrain))
+                    X_test = hstack((X_test, NBtest))
                     # Train classifier
                 clf = LogisticRegression(C=s, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
                 clf.fit(X_train, y_train)
