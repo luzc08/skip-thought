@@ -164,8 +164,8 @@ def pre_mapping(y, target_y):
     premapping labels to one-v-all
     """
     labels = [pre_one_vs_all(t, target_y) for t in y]
-    return labels
-
+    labels_np = np.array(labels)
+    return labels_np
 
 def pre_one_vs_all(t, target):
     if t == target:
