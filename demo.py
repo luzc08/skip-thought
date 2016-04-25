@@ -34,10 +34,10 @@ if __name__ == "__main__":
     model = skipthoughts.load_model()
     clf = pickle.load(open("LRModel.p", "rb"))
     while True:
-        test0 = raw_input('Please enter text to test:')
+        sent = raw_input('Please enter text to test:')
 
         #print x.split()
-        sent = preprocess(test0)
+        #sent = preprocess(test0)
         #print sent
 
         k = predict_AZ(model, sent, clf)
