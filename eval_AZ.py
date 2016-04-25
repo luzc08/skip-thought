@@ -59,8 +59,12 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
             clf = LogisticRegression(C=C, solver='newton-cg', multi_class='multinomial', n_jobs=-1)
             clf.fit(trainF, train_labels)
             yhat = clf.predict(testF)
-            pickle.dump(yhat, open("LR_test_labels.p", "wb"))
-            pickle.dump(clf, open("LRModel.p", "wb"))
+            if nb_feature:
+                pickle.dump(yhat, open("LR_test_labels_nb.p", "wb"))
+                pickle.dump(clf, open("LRModel_nb.p", "wb"))
+            else:
+                pickle.dump(yhat, open("LR_test_labels.p", "wb"))
+                pickle.dump(clf, open("LRModel.p", "wb"))
 
         if classifier=='SVM':
             clf = svm.SVC(decision_function_shape='ovo')
