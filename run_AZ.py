@@ -10,6 +10,10 @@ elif sys.argv[1]=='eval':
     model = skipthoughts.load_model()
     eval_AZ.evaluate(model, evalcv=False, evaltest=True)
 
+elif sys.argv[1]=='eval_nb':
+    model = skipthoughts.load_model()
+    eval_AZ.evaluate(model, evalcv=False, evaltest=True, nb_feature=True)
+
 elif sys.argv[1]=='train_eval':
     #default: logistic regression
     model = skipthoughts.load_model()
