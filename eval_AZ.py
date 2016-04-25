@@ -38,6 +38,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
         print 'Running cross-validation...'
         interval = [2**t for t in range(0,9,1)]     # coarse-grained
         #interval = [t for t in range(1,20,1)]
+        print train_labels
         C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed, classifier=classifier, nb_feature=nb_feature)
 
     if evaltest:
@@ -157,18 +158,21 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
         return 0
     # Get the index of the best score
 
-def pre_mapping(y,target_y):
+
+def pre_mapping(y, target_y):
     """
     premapping labels to one-v-all
     """
-    labels = [pre_one_vs_all(t,target_y) for t in y]
+    labels = [pre_one_vs_all(t, target_y) for t in y]
     return labels
 
-def pre_one_vs_all(t,target):
-    if t==target:
+
+def pre_one_vs_all(t, target):
+    if t == target:
         return 0
     else:
         return 1
+
 
 def compute_nb(X, y, Z):
     """
