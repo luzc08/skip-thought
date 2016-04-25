@@ -9,6 +9,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn import svm
 from sklearn.cross_validation import KFold
 from sklearn.utils import shuffle
+from sklearn.metrics import classification_report
 import cPickle as pickle
 import nbsvm
 
@@ -63,6 +64,8 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False, classifier='LG
         # clf.fit(trainF, train_labels)
 
         print 'Test accuracy: ' + str(clf.score(testF, test_labels))
+        target_names = ['Background','Conclusion', 'Problem', 'Result', 'Connection', 'Method', 'Difference','Future-work']
+        print(classification_report(test_labels, yhat, target_names=target_names))
 
 
 def load_data():
