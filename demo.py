@@ -44,5 +44,5 @@ if __name__ == "__main__":
         k = predict_AZ(model, sent, clf)
         annotations = [tags[x] for x in k]
         for idx, s in enumerate(sent):
-            #print s
-            print 'AZ_Result: ', annotations[idx]
+            print s
+            print '[AZ_Result] ', annotations[idx]
