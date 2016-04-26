@@ -22,7 +22,7 @@ elif sys.argv[1]=='train_eval':
 elif sys.argv[1]=='train_eval_nb':
     #default: logistic regression
     model = skipthoughts.load_model()
-    for i in range(0, 4):
+    for i in range(2, 4):
         eval_AZ.evaluate(model, evalcv=True, evaltest=True, nb_feature=True, nb_tag=i)
 
 elif sys.argv[1] == 'train_eval_SVM':
