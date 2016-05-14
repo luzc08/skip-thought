@@ -1,5 +1,5 @@
 import os.path
-from process_text import *
+#from process_text import *
 
 dir_path = '/data2/luzhc/extracted/'
 target_path = '/data2/luzhc/raw_text/'
