@@ -24,10 +24,11 @@ def get_raw_text(filename, t_filename):
             f.write(abstract.get('text')+'\n')
         elif 'REFERENCE' not in sec.get('heading'):
             f.write(sec.get('heading')+'\n')
-            paras = sec.findall("./para")
-            for para in paras:
-                #print para.get('text')
-                f.write(para.get('text')+'\n')
+            print(sec.len())
+            # paras = sec.findall("./para")
+            # for para in paras:
+            #     #print para.get('text')
+            #     f.write(para.get('text')+'\n')
 
     #print paper
 
