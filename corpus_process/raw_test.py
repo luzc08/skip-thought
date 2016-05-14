@@ -3,7 +3,8 @@ import os.path
 from xml_to_txt import *
 
 dir_path = '/data2/luzhc/extracted/'
-target_path = '/data2/luzhc/raw_text/'
+#target_path = '/data2/luzhc/raw_text/'
+target_path = 'raw_text/'
 #conf_list = ['CHI','CSCW','UIST','Ubicomp']
 conf_list = ['CHI2016']
 
@@ -29,7 +30,7 @@ def process(conf, t_conf):
 
     for filename in filename_list:
         print 'processing', file_folder, filename
-        get_raw_text(file_folder + '/' + filename,t_filename)
+        get_raw_text(file_folder + '/' + filename, t_filename)
 
         # if not os.path.isfile('corpusxml/' + conf +'/'+filename.split('.')[-2]+'_lapdf.xml'):
         #     subprocess.call(['java', '-classpath', 'lapdftext.jar', 'edu.isi.bmkeg.lapdf.bin.BlockifyClassify',
