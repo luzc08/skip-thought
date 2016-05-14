@@ -24,7 +24,15 @@ def get_raw_text(filename, t_filename):
             f.write(abstract.get('text')+'\n')
         elif 'REFERENCE' not in sec.get('heading'):
             f.write(sec.get('heading')+'\n')
-            print(sec.len())
+            text_in_sec = sec.iterdescendants()
+            for item in text_in_sec:
+                if item.tag == 'para':
+                    #print item.get('text')
+                    f.write(item.get('text')+'\n')
+                elif item.tag == 'subsection':
+                    f.write(item.get('heading') + '\n')
+
+            #print(sec.len())
             # paras = sec.findall("./para")
             # for para in paras:
             #     #print para.get('text')
