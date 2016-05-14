@@ -8,11 +8,11 @@ target_path = 'raw_text/'
 #conf_list = ['CHI','CSCW','UIST','Ubicomp']
 conf_list = ['CHI2016']
 
-def process(conf, t_conf):
+def process(conf):
     t_dir = target_path
     if not os.path.exists(t_dir):
         os.makedirs(t_dir)
-    t_filename = target_path + t_conf + '.txt'
+    t_filename = target_path + conf + '.txt'
     file_folder = dir_path + conf
     #self.file_folder = tkFileDialog.askdirectory()
     #self.dir_str = self.file_folder.split('/')[-1]
