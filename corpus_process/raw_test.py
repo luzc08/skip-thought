@@ -1,12 +1,10 @@
-#import subprocess
-#import xml.etree.ElementTree as ET
 import os.path
 from process_text import *
 
 dir_path = '/data2/luzhc/extracted/'
 target_path = '/data2/luzhc/raw_text/'
-conf_list = ['CHI','CSCW','UIST','Ubicomp']
-
+#conf_list = ['CHI','CSCW','UIST','Ubicomp']
+conf_list = ['CHI2016']
 
 def process(conf, t_conf):
     t_dir = target_path
@@ -24,6 +22,10 @@ def process(conf, t_conf):
     # process_textdata(self.file_path_list,'output.xml')
     filename_list = os.listdir(file_folder)
     filename_list = [x for x in filename_list if '.xml' in x]
+    ## test 1
+
+    filename_list = filename_list[0:2]
+
     for filename in filename_list:
         print 'processing', file_folder, filename
         # if not os.path.isfile('corpusxml/' + conf +'/'+filename.split('.')[-2]+'_lapdf.xml'):
