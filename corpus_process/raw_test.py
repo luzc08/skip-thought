@@ -12,7 +12,7 @@ def process(conf, t_conf):
     t_dir = target_path
     if not os.path.exists(t_dir):
         os.makedirs(t_dir)
-    t_filename = t_conf + '.txt'
+    t_filename = target_path + t_conf + '.txt'
     file_folder = dir_path + conf
     #self.file_folder = tkFileDialog.askdirectory()
     #self.dir_str = self.file_folder.split('/')[-1]
@@ -26,7 +26,7 @@ def process(conf, t_conf):
     filename_list = [x for x in filename_list if '.xml' in x]
     ## test 1
 
-    filename_list = filename_list[0:2]
+    filename_list = filename_list[0:10]
 
     for filename in filename_list:
         print 'processing', file_folder, filename
