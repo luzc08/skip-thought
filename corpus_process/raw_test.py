@@ -1,5 +1,6 @@
 import os.path
 #from process_text import *
+from xml_to_txt import *
 
 dir_path = '/data2/luzhc/extracted/'
 target_path = '/data2/luzhc/raw_text/'
@@ -11,7 +12,7 @@ def process(conf, t_conf):
     if not os.path.exists(t_dir):
         os.makedirs(t_dir)
     t_filename = t_conf + '.txt'
-    file_folder = dir_path+'/'+conf
+    file_folder = dir_path + conf
     #self.file_folder = tkFileDialog.askdirectory()
     #self.dir_str = self.file_folder.split('/')[-1]
     #tmp_str = file_folder.split('/')[-1]
@@ -28,6 +29,8 @@ def process(conf, t_conf):
 
     for filename in filename_list:
         print 'processing', file_folder, filename
+        get_raw_text(file_folder + '/' + filename,t_filename)
+
         # if not os.path.isfile('corpusxml/' + conf +'/'+filename.split('.')[-2]+'_lapdf.xml'):
         #     subprocess.call(['java', '-classpath', 'lapdftext.jar', 'edu.isi.bmkeg.lapdf.bin.BlockifyClassify',
         #                  file_folder + '/' + filename, 'corpusxml/' + conf])
