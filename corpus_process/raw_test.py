@@ -54,4 +54,4 @@ for target_conf in conf_list:
     #print filtered_folders
 
     for conf in filtered_folders:
-        process(conf, target_conf)
+        process(conf)
