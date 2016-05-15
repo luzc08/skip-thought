@@ -36,10 +36,10 @@ def process_raw_text(filename):
         sentences = sent_tokenize_text(line)
         for sent in sentences:
             tokens = word_tokenize(sent)
-            tokens = [i for i in tokens if i not in string.punctuation]
+            tokens = [i.lower() for i in tokens if i not in string.punctuation]
             stems = stem_tokens(tokens, stemmer)
-            str = stems.join(stems)
-            f.write(str+'\n')
+            new_line = ' '.join(stems)
+            f.write(new_line+'\n')
             #return stems
     f.close()
 
