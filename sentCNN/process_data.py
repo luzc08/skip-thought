@@ -178,7 +178,7 @@ if __name__=="__main__":
     for t in revs:
         if t["num_words"]==max_l:
             print t["text"]
-    
+
     print "data loaded!"
     print "number of sentences: " + str(len(revs))
     print "vocab size: " + str(len(vocab))

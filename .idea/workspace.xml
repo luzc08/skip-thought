@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08dd9c6a-1730-4186-b7e1-a1e70c6d4a6a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" afterPath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentCNN/process_data.py" afterPath="$PROJECT_DIR$/sentCNN/process_data.py" />
     </list>
     <ignored path="skip-thought.iws" />
@@ -46,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cnn_sentences.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cnn_sentences.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.555555">
-              <caret line="300" column="38" selection-start-line="300" selection-start-column="38" selection-end-line="300" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.54022986">
+              <caret line="294" column="26" selection-start-line="294" selection-start-column="26" selection-end-line="294" selection-end-column="26" />
               <folding>
                 <element signature="e#326#340#0" expanded="true" />
               </folding>
@@ -58,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process_data.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="process_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sentCNN/process_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59770113">
-              <caret line="180" column="4" selection-start-line="180" selection-start-column="4" selection-end-line="180" selection-end-column="4" />
+            <state vertical-scroll-proportion="-14.888889">
+              <caret line="194" column="94" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="94" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -133,8 +134,8 @@
         <option value="$PROJECT_DIR$/word2vec_model/online_training.py" />
         <option value="$PROJECT_DIR$/word2vec_model/test_w2v.py" />
         <option value="$PROJECT_DIR$/sentCNN/cnn_classes.py" />
-        <option value="$PROJECT_DIR$/sentCNN/cnn_sentences.py" />
         <option value="$PROJECT_DIR$/sentCNN/process_data.py" />
+        <option value="$PROJECT_DIR$/sentCNN/cnn_sentences.py" />
       </list>
     </option>
   </component>
@@ -874,16 +875,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.555555">
-          <caret line="300" column="38" selection-start-line="300" selection-start-column="38" selection-end-line="300" selection-end-column="38" />
-          <folding>
-            <element signature="e#326#340#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/predict_AZ_LR.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07103825">
@@ -926,10 +917,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sentCNN/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59770113">
-          <caret line="180" column="4" selection-start-line="180" selection-start-column="4" selection-end-line="180" selection-end-column="4" />
+        <state vertical-scroll-proportion="-14.888889">
+          <caret line="194" column="94" selection-start-line="194" selection-start-column="58" selection-end-line="194" selection-end-column="94" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.54022986">
+          <caret line="294" column="26" selection-start-line="294" selection-start-column="26" selection-end-line="294" selection-end-column="26" />
+          <folding>
+            <element signature="e#326#340#0" expanded="true" />
           </folding>
         </state>
       </provider>
