@@ -2,6 +2,8 @@ import os.path
 #from process_text import *
 from xml_to_txt import *
 
+#test script, get raw text from xml
+
 dir_path = '/data2/luzhc/extracted/'
 #target_path = '/data2/luzhc/raw_text/'
 target_path = 'raw_text/'

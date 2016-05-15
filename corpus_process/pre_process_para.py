@@ -1,9 +1,11 @@
 import os.path
 import nltk
 from nltk.tokenize import word_tokenize
-from nltk.stem.porter import PorterStemmer
+#from nltk.stem.porter import PorterStemmer
 import re
 import string
+
+# preprocessed all the raw text
 
 dir_path = '/data2/luzhc/raw_text/'
 target_path = '/data2/luzhc/pre_processed_text/'
@@ -11,11 +13,11 @@ target_path = '/data2/luzhc/pre_processed_text/'
 #stemmer = PorterStemmer()
 p = re.compile(ur'\[[\,\-\s\d]*\]')
 
-def stem_tokens(tokens, stemmer):
-    stemmed = []
-    for item in tokens:
-        stemmed.append(stemmer.stem(item))
-    return stemmed
+#def stem_tokens(tokens, stemmer):
+#    stemmed = []
+#    for item in tokens:
+#        stemmed.append(stemmer.stem(item))
+#    return stemmed
 
 
 def sent_tokenize_text(line):
