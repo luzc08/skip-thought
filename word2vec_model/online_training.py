@@ -5,6 +5,8 @@ from nltk.tokenize import word_tokenize
 import string
 import cPickle as pickle
 
+target_dir = '/data2/luzhc/w2v_data/'
+
 class BioSentences(object):
     def __init__(self, filename):
         self.filename = filename
@@ -28,5 +30,17 @@ class BioSentences(object):
 
 model = word2vec.Word2Vec.load('/data2/luzhc/w2v_data/test.model')
 
-model.train(BioSentences("sentences.p"))
+sentences = BioSentences("sentences.p")
+
+model.train(sentences)
+
+model.save(target_dir+'mixed.model')
+
+print model.most_similar(['girl', 'father'], ['boy'], topn=3)
+
+print model.doesnt_match("breakfast cereal dinner lunch".split())
+
+
+
+
 
