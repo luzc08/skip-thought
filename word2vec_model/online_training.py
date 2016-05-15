@@ -27,6 +27,7 @@ class BioSentences(object):
 #         tokens = [i.lower() for i in tokens if i not in string.punctuation]
 #         result.append(tokens)
 #     return result
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 model = word2vec.Word2Vec.load('/data2/luzhc/w2v_data/test.model')
 
