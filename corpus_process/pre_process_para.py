@@ -36,8 +36,8 @@ def process_raw_text(filename):
         return
     for line in open(f_name):
         sentences = sent_tokenize_text(line)
-        for sent in sentences:
-            sent = re.sub(p, '', sent)
+        for t_sent in sentences:
+            sent = re.sub(p, '', t_sent)
             tokens = word_tokenize(sent)
             tokens = [i.lower() for i in tokens if i not in string.punctuation]
             #stems = stem_tokens(tokens, stemmer)
