@@ -1,5 +1,5 @@
 import numpy as np
-import cPickle
+import cPickle as pickle
 from collections import defaultdict
 import sys, re
 import pandas as pd
@@ -188,5 +188,5 @@ if __name__=="__main__":
     rand_vecs = {}
     add_unknown_words(rand_vecs, vocab)
     W2, _ = get_W(rand_vecs)
-    cPickle.dump([revs, W, W2, word_idx_map, vocab], open("data_for_cnn.p", "wb"))
+    pickle.dump([revs, W, W2, word_idx_map, vocab], open("data_for_cnn.p", "wb"))
     print "dataset created!"

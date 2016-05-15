@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08dd9c6a-1730-4186-b7e1-a1e70c6d4a6a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sentCNN/cnn_classes.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sentCNN/process_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentCNN/process_data.py" afterPath="$PROJECT_DIR$/sentCNN/process_data.py" />
     </list>
     <ignored path="skip-thought.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,8 +61,8 @@
       <file leaf-file-name="process_data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sentCNN/process_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6721311">
-              <caret line="186" column="32" selection-start-line="186" selection-start-column="32" selection-end-line="186" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.77011496">
+              <caret line="190" column="44" selection-start-line="190" selection-start-column="44" selection-end-line="190" selection-end-column="44" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -929,8 +926,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sentCNN/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6721311">
-          <caret line="186" column="32" selection-start-line="186" selection-start-column="32" selection-end-line="186" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.77011496">
+          <caret line="190" column="44" selection-start-line="190" selection-start-column="44" selection-end-line="190" selection-end-column="44" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
