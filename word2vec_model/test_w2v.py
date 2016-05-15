@@ -6,7 +6,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 #model = word2vec.Word2Vec.load_word2vec_format('/data2/luzhc/GoogleNews-vectors-negative300.bin', binary=True)
 model = word2vec.Word2Vec.load('/data2/luzhc/w2v_data/test.model')
 
-model.accuracy('q_w.txt')
+model.accuracy('word2vec_model/q_w.txt')
 
 #print model.most_similar(['girl', 'father'], ['boy'], topn=3)
 
