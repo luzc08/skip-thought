@@ -7,8 +7,8 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 model = word2vec.Word2Vec.load('/data2/luzhc/w2v_data/test.model')
 
 #model.accuracy('word2vec_model/q_w.txt')
-model.accuracy('word2vec_model/q_p.txt')
+#model.accuracy('word2vec_model/q_p.txt')
 
-#print model.most_similar(['girl', 'father'], ['boy'], topn=3)
+print model.most_similar(['tangible', 'interaction'], ['software'], topn=10)
 
 #print model.doesnt_match("breakfast cereal dinner lunch".split())
