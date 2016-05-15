@@ -2,12 +2,14 @@ import os.path
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.stem.porter import PorterStemmer
+import re
 import string
 
 dir_path = '/data2/luzhc/raw_text/'
 target_path = '/data2/luzhc/pre_processed_text/'
 
-stemmer = PorterStemmer()
+#stemmer = PorterStemmer()
+p = re.compile(ur'\[[\,\-\s\d]*\]')
 
 def stem_tokens(tokens, stemmer):
     stemmed = []
@@ -35,10 +37,12 @@ def process_raw_text(filename):
     for line in open(f_name):
         sentences = sent_tokenize_text(line)
         for sent in sentences:
+            sent = re.sub(p, '', sent)
             tokens = word_tokenize(sent)
             tokens = [i.lower() for i in tokens if i not in string.punctuation]
-            stems = stem_tokens(tokens, stemmer)
-            new_line = ' '.join(stems)
+            #stems = stem_tokens(tokens, stemmer)
+            #new_line = ' '.join(stems)
+            new_line = ' '.join(tokens)
             f.write(new_line+'\n')
             #return stems
     f.close()
