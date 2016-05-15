@@ -3,6 +3,7 @@ import logging
 import os
 
 corpus_dir = '/data2/luzhc/pre_processed_text/'
+target_dir = '/data2/luzhc/w2v_data/'
 
 class HCISentences(object):
     def __init__(self, dirname):
@@ -16,12 +17,15 @@ class HCISentences(object):
 
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
+if not os.path.exists(target_dir):
+    os.makedirs(target_dir)
+
 #model = word2vec.Word2Vec.load_word2vec_format('/data2/luzhc/GoogleNews-vectors-negative300.bin', binary=True)
 sentences = HCISentences(corpus_dir)
 
 model = word2vec.Word2Vec(sentences, size = 200)
 
-model.save('/data2/luzhc/w2v_data/test.model')
+model.save(target_dir+'test.model')
 
 print model.most_similar(['girl', 'father'], ['boy'], topn=3)
 
