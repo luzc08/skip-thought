@@ -188,5 +188,5 @@ if __name__=="__main__":
     rand_vecs = {}
     add_unknown_words(rand_vecs, vocab)
     W2, _ = get_W(rand_vecs)
-    pickle.dump([revs, W, W2, word_idx_map, vocab], open("data_for_cnn.p", "wb"))
+    pickle.dump([revs, W, W2, word_idx_map, vocab], open("/data2/luzhc/w2v_data/data_for_cnn.p", "wb"))
     print "dataset created!"
