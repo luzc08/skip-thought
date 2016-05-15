@@ -61,8 +61,8 @@
       <file leaf-file-name="process_data.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sentCNN/process_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77011496">
-              <caret line="190" column="80" selection-start-line="190" selection-start-column="80" selection-end-line="190" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.59770113">
+              <caret line="180" column="4" selection-start-line="180" selection-start-column="4" selection-end-line="180" selection-end-column="4" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -926,8 +926,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sentCNN/process_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77011496">
-          <caret line="190" column="80" selection-start-line="190" selection-start-column="80" selection-end-line="190" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.59770113">
+          <caret line="180" column="4" selection-start-line="180" selection-start-column="4" selection-end-line="180" selection-end-column="4" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

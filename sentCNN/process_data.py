@@ -175,6 +175,10 @@ if __name__=="__main__":
     print "loading data...",        
     revs, vocab, test, test_labels = build_data_cv(cv=10, clean_string=True)
     max_l = np.max(pd.DataFrame(revs)["num_words"])
+    for t in revs:
+        if t["num_words"]==max_l:
+            print t["text"]
+    
     print "data loaded!"
     print "number of sentences: " + str(len(revs))
     print "vocab size: " + str(len(vocab))
