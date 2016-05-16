@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08dd9c6a-1730-4186-b7e1-a1e70c6d4a6a" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" afterPath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" />
     </list>
     <ignored path="skip-thought.iws" />
@@ -49,8 +50,8 @@
       <file leaf-file-name="cnn_sentences.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64833003">
-              <caret line="285" column="29" selection-start-line="285" selection-start-column="29" selection-end-line="285" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.6188605">
+              <caret line="284" column="36" selection-start-line="284" selection-start-column="36" selection-end-line="284" selection-end-column="36" />
               <folding>
                 <element signature="e#326#340#0" expanded="true" />
               </folding>
@@ -926,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64833003">
-          <caret line="285" column="29" selection-start-line="285" selection-start-column="29" selection-end-line="285" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.6188605">
+          <caret line="284" column="36" selection-start-line="284" selection-start-column="36" selection-end-line="284" selection-end-column="36" />
           <folding>
             <element signature="e#326#340#0" expanded="true" />
           </folding>

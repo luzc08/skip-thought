@@ -283,7 +283,7 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
     #print train
     print len(train)
     for idx in range(0, len(train)):
-        print len(train(idx))
+        print len(train[idx])
     train = np.array(train, dtype="int")
     test = np.array(test, dtype="int")
     return [train, test]
