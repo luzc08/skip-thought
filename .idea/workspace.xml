@@ -49,8 +49,8 @@
       <file leaf-file-name="cnn_sentences.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73477405">
-              <caret line="291" column="16" selection-start-line="291" selection-start-column="16" selection-end-line="291" selection-end-column="16" />
+            <state vertical-scroll-proportion="-0.76817286">
+              <caret line="282" column="28" selection-start-line="282" selection-start-column="28" selection-end-line="282" selection-end-column="28" />
               <folding>
                 <element signature="e#326#340#0" expanded="true" />
               </folding>
@@ -933,8 +933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73477405">
-          <caret line="291" column="16" selection-start-line="291" selection-start-column="16" selection-end-line="291" selection-end-column="16" />
+        <state vertical-scroll-proportion="-0.76817286">
+          <caret line="282" column="28" selection-start-line="282" selection-start-column="28" selection-end-line="282" selection-end-column="28" />
           <folding>
             <element signature="e#326#340#0" expanded="true" />
           </folding>

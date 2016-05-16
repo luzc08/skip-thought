@@ -261,8 +261,8 @@ def get_idx_from_sent(sent, word_idx_map, max_l=51, k=300, filter_h=5):
     for i in xrange(pad):
         x.append(0)
     words = sent.split()
-    for word in words:
-        if word in word_idx_map:
+    for idx, word in enumerate(words):
+        if word in word_idx_map and idx < max_l:
             x.append(word_idx_map[word])
     while len(x) < max_l+2*pad:
         x.append(0)
@@ -273,12 +273,12 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
     Transforms sentences into a 2-d matrix.
     """
     train, test = [], []
-    max_l1 = 0
+    #max_l1 = 0
     for rev in revs:
         sent = get_idx_from_sent(rev["text"], word_idx_map, max_l, k, filter_h)
-        t1 = len(sent)
-        if t1>max_l1:
-            max_l1 = t1
+        #t1 = len(sent)
+        # if t1>max_l1:
+        #     max_l1 = t1
         sent.append(rev["y"])
         #print t1, len(sent)
         if rev["split"]==cv:
@@ -289,7 +289,7 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
     #print len(train)
     # for idx in range(0, len(train)):
     #     print len(train[idx])
-    print max_l1
+    # print max_l1
     train = np.array(train, dtype="int")
     test = np.array(test, dtype="int")
     return [train, test]
@@ -318,7 +318,7 @@ if __name__=="__main__":
     results = []
     r = range(0,10)
     for i in r:
-        datasets = make_idx_data_cv(revs, word_idx_map, i, max_l=56,k=300, filter_h=5)
+        datasets = make_idx_data_cv(revs, word_idx_map, i, max_l=152,k=300, filter_h=5)
         perf = train_conv_net(datasets,
                               U,
                               lr_decay=0.95,
