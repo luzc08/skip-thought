@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08dd9c6a-1730-4186-b7e1-a1e70c6d4a6a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" afterPath="$PROJECT_DIR$/sentCNN/cnn_sentences.py" />
     </list>
     <ignored path="skip-thought.iws" />
@@ -50,8 +49,8 @@
       <file leaf-file-name="cnn_sentences.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76620823">
-              <caret line="290" column="23" selection-start-line="290" selection-start-column="23" selection-end-line="290" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.73477405">
+              <caret line="291" column="16" selection-start-line="291" selection-start-column="16" selection-end-line="291" selection-end-column="16" />
               <folding>
                 <element signature="e#326#340#0" expanded="true" />
               </folding>
@@ -509,7 +508,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sentCNN/cnn_sentences.py</url>
-          <line>294</line>
+          <line>298</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
@@ -934,8 +933,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sentCNN/cnn_sentences.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76620823">
-          <caret line="290" column="23" selection-start-line="290" selection-start-column="23" selection-end-line="290" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.73477405">
+          <caret line="291" column="16" selection-start-line="291" selection-start-column="16" selection-end-line="291" selection-end-column="16" />
           <folding>
             <element signature="e#326#340#0" expanded="true" />
           </folding>

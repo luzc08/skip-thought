@@ -273,11 +273,14 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
     Transforms sentences into a 2-d matrix.
     """
     train, test = [], []
+    max_l1 = 0
     for rev in revs:
         sent = get_idx_from_sent(rev["text"], word_idx_map, max_l, k, filter_h)
         t1 = len(sent)
+        if t1>max_l1:
+            max_l1 = t1
         sent.append(rev["y"])
-        print t1, len(sent)
+        #print t1, len(sent)
         if rev["split"]==cv:
             test.append(sent)
         else:
@@ -286,6 +289,7 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
     #print len(train)
     # for idx in range(0, len(train)):
     #     print len(train[idx])
+    print max_l1
     train = np.array(train, dtype="int")
     test = np.array(test, dtype="int")
     return [train, test]
