@@ -296,7 +296,7 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5, target
         #t1 = len(sent)
         # if t1>max_l1:
         #     max_l1 = t1
-        sent.append(pre_mapping(rev["y"], target_class))
+        sent.append(pre_one_vs_all(rev["y"], target_class))
         #print t1, len(sent)
         if rev["split"]==cv:
             test.append(sent)
