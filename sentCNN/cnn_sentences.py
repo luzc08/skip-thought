@@ -268,7 +268,24 @@ def get_idx_from_sent(sent, word_idx_map, max_l=51, k=300, filter_h=5):
         x.append(0)
     return x
 
-def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
+
+def pre_mapping(y, target_y):
+    """
+    premapping labels to one-v-all
+    """
+    labels = [pre_one_vs_all(t, target_y) for t in y]
+    labels_np = np.array(labels)
+    return labels_np
+
+
+def pre_one_vs_all(t, target):
+    if t == target:
+        return 0
+    else:
+        return 1
+
+
+def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5, target_class = 5):
     """
     Transforms sentences into a 2-d matrix.
     """
@@ -279,7 +296,7 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
         #t1 = len(sent)
         # if t1>max_l1:
         #     max_l1 = t1
-        sent.append(rev["y"])
+        sent.append(pre_mapping(rev["y"], target_class))
         #print t1, len(sent)
         if rev["split"]==cv:
             test.append(sent)
@@ -296,6 +313,8 @@ def make_idx_data_cv(revs, word_idx_map, cv, max_l=51, k=300, filter_h=5):
 
 
 if __name__=="__main__":
+    annotations = [5, 1, 3, 0]
+    annotations_name = ['Method', 'Conclusion', 'Result', 'Background']
     print "loading data...",
     x = cPickle.load(open("/data2/luzhc/w2v_data/data_for_cnn.p","rb"))
     revs, W, W2, word_idx_map, vocab = x[0], x[1], x[2], x[3], x[4]
@@ -318,7 +337,7 @@ if __name__=="__main__":
     results = []
     r = range(0,10)
     for i in r:
-        datasets = make_idx_data_cv(revs, word_idx_map, i, max_l=152,k=300, filter_h=5)
+        datasets = make_idx_data_cv(revs, word_idx_map, i, max_l=152,k=300, filter_h=5, target_class=annotations[0])
         perf = train_conv_net(datasets,
                               U,
                               lr_decay=0.95,
