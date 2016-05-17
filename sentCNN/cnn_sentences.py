@@ -337,7 +337,7 @@ if __name__=="__main__":
     results = []
     r = range(0,10)
     for i in r:
-        datasets = make_idx_data_cv(revs, word_idx_map, i, max_l=80,k=300, filter_h=5, target_class=annotations[1])
+        datasets = make_idx_data_cv(revs, word_idx_map, i, max_l=80,k=300, filter_h=5, target_class=annotations[2])
         perf = train_conv_net(datasets,
                               U,
                               lr_decay=0.95,
