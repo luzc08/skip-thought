@@ -351,5 +351,6 @@ if __name__=="__main__":
                               batch_size=50,
                               dropout_rate=[0.5])
         print "cv: " + str(i) + ", perf: " + str(perf)
+
         results.append(perf)
     print str(np.mean(results))
