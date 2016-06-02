@@ -8,15 +8,25 @@ if __name__ == "__main__":
     model3 = word2vec.Word2Vec.load('/data2/luzhc/w2v_data/mixed.model')
 
     while True:
+
         x = raw_input('Please enter 1st word to test:')
+
+        if x == '':
+            x = raw_input('Please enter 1st word to test:')
+
         #test0 = [x]
         y = raw_input('2nd word:')
+
+        if y == '':
+            y = raw_input('2nd word:')
 
         pos = [x,y]
 
         z = raw_input('word to substract:')
-
-        neg = [z]
+        if z == '':
+            neg = []
+        else:
+            neg = [z]
 
     #model.accuracy('word2vec_model/q_w.txt')
     #model.accuracy('word2vec_model/q_p.txt')
