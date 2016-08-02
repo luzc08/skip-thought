@@ -1,7 +1,7 @@
 import os.path
 import nltk
 from nltk.tokenize import word_tokenize
-#from nltk.stem.porter import PorterStemmer
+from nltk.stem import *
 import re
 import string
 
@@ -10,14 +10,14 @@ import string
 dir_path = '/data2/luzhc/raw_text/'
 target_path = '/data2/luzhc/pre_processed_text/'
 
-#stemmer = PorterStemmer()
+stemmer = PorterStemmer()
 p = re.compile(ur'\[[\,\-\s\d]*\]')
 
-#def stem_tokens(tokens, stemmer):
-#    stemmed = []
-#    for item in tokens:
-#        stemmed.append(stemmer.stem(item))
-#    return stemmed
+def stem_tokens(tokens, stemmer):
+   stemmed = []
+   for item in tokens:
+       stemmed.append(stemmer.stem(item))
+   return stemmed
 
 
 def sent_tokenize_text(line):
@@ -42,9 +42,9 @@ def process_raw_text(filename):
             sent = re.sub(p, '', t_sent)
             tokens = word_tokenize(sent)
             tokens = [i.lower() for i in tokens if i not in string.punctuation]
-            #stems = stem_tokens(tokens, stemmer)
-            #new_line = ' '.join(stems)
-            new_line = ' '.join(tokens)
+            stems = stem_tokens(tokens, stemmer)
+            new_line = ' '.join(stems)
+            # new_line = ' '.join(tokens)
             f.write(new_line+'\n')
             #return stems
     f.close()
@@ -58,4 +58,3 @@ t_folders = os.listdir(target_path)
 
 for filename in folders:
     process_raw_text(filename)
-
