@@ -43,7 +43,9 @@ if not os.path.exists(target_path):
 t_folders = os.listdir(target_path)
 
 for filename in folders:
-    all_tokens = all_tokens + collect_text(filename)
+    tmp = collect_text(filename)
+    if tmp:
+        all_tokens = all_tokens + tmp
 
 pickle.dump( all_tokens, open( target_path+"tokens.p", "wb" ) )
 count = Counter(all_tokens)
