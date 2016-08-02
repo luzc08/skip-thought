@@ -9,6 +9,7 @@ import re
 import string
 from collections import Counter
 from pre_process_para import *
+import cPickle as pickle
 
 data_path = '/data2/luzhc/raw_text/'
 
@@ -26,7 +27,7 @@ def collect_text(filename):
         for t_sent in sentences:
             sent = re.sub(p, '', t_sent)
             tokens = word_tokenize(sent)
-            tokens = [i.lower() for i in tokens if i not in string.punctuation and i not in stopwords.words('english')]
+            tokens = [i.lower() for i in tokens if i not in string.punctuation]
             stems = stem_tokens(tokens, stemmer)
             return stems
             # all_tokens = all_tokens + stems
@@ -44,6 +45,7 @@ t_folders = os.listdir(target_path)
 for filename in folders:
     all_tokens = all_tokens + collect_text(filename)
 
+pickle.dump( all_tokens, open( target_path+"tokens.p", "wb" ) )
 count = Counter(all_tokens)
 print count.most_common(100)
 
