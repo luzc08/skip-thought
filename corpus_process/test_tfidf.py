@@ -21,6 +21,7 @@ all_tokens = []
 
 def collect_text1(filename):
     f_name = os.path.join(data_path, filename)
+    print f_name + ' ? '
     # print 'processing', f_name
     tokens = []
     if not os.path.isfile(f_name):
