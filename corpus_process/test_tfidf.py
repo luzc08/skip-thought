@@ -66,7 +66,7 @@ def collect_text(filename):
 #     os.makedirs(target_path)
 
 # t_folders = os.listdir(target_path)
-all_tokens = collect_text('CHI2015')
+all_tokens = collect_text('CHI2015.txt')
 
 
 # for filename in folders:
