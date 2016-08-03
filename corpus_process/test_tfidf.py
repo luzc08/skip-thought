@@ -42,24 +42,33 @@ def collect_text(filename):
     f_name = os.path.join(data_path, filename)
     print f_name + ' ? '
     # print 'processing', f_name
-    all_tokens = []
+    # all_tokens = []
     if not os.path.isfile(f_name):
-        return all_tokens
-    for line in open(f_name):
-        #print line
-        sentences = sent_tokenize_text(line)
-        for t_sent in sentences:
-            # cnt += 1
-            sent = re.sub(p, '', t_sent)
-            tokens = word_tokenize(sent)
-            tokens = [i.lower() for i in tokens if i not in string.punctuation]
-            stems = stem_tokens(tokens, stemmer)
-            # if cnt%10 == 0:
-            #     print stems
-            all_tokens = all_tokens + stems
+        return []
+
+    with open(f_name, 'r') as text_file:
+        text = text_file.read()
+        lowers = text.lower()
+        lowers1 = re.sub(p, '', lowers)
+        # remove the punctuation using the character deletion step of translate
+        no_punctuation = lowers1.translate(None, string.punctuation)
+        tokens = nltk.word_tokenize(no_punctuation)
+        return tokens
+    # for line in open(f_name):
+    #     #print line
+    #     sentences = sent_tokenize_text(line)
+    #     for t_sent in sentences:
+    #         # cnt += 1
+    #         sent = re.sub(p, '', t_sent)
+    #         tokens = word_tokenize(sent)
+    #         tokens = [i.lower() for i in tokens if i not in string.punctuation]
+    #         stems = stem_tokens(tokens, stemmer)
+    #         # if cnt%10 == 0:
+    #         #     print stems
+    #         all_tokens = all_tokens + stems
 
 
-    return all_tokens
+    # return all_tokens
             # all_tokens = all_tokens + stems
             # new_line = ' '.join(stems)
             # new_line = ' '.join(tokens)
