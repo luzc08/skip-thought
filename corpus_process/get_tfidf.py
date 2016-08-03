@@ -17,6 +17,10 @@ target_path = '/data2/luzhc/tfidf/'
 
 all_tokens = []
 
+p = re.compile(ur'\[[\,\-\s\d]*\]')
+
+stemmer = PorterStemmer()
+
 # cnt = 0
 
 def stem_tokens(tokens, stemmer):
