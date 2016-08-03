@@ -17,7 +17,7 @@ target_path = '/data2/luzhc/tfidf/'
 
 all_tokens = []
 
-cnt = 0
+# cnt = 0
 
 def collect_text(filename):
     f_name = os.path.join(data_path, filename)
@@ -26,15 +26,16 @@ def collect_text(filename):
     if not os.path.isfile(f_name):
         return tokens
     for line in open(f_name):
+        print line
         sentences = sent_tokenize_text(line)
         for t_sent in sentences:
-            cnt += 1
+            # cnt += 1
             sent = re.sub(p, '', t_sent)
             tokens = word_tokenize(sent)
             tokens = [i.lower() for i in tokens if i not in string.punctuation]
             stems = stem_tokens(tokens, stemmer)
-            if cnt%10 == 0:
-                print stems
+            # if cnt%10 == 0:
+            #     print stems
 
     tokens = tokens + stems
     return tokens
