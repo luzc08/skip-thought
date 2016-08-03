@@ -8,7 +8,7 @@ from nltk.corpus import stopwords
 import re
 import string
 from collections import Counter
-from pre_process_para import *
+from pre_process_para import stem_tokens,sent_tokenize_text
 import cPickle as pickle
 
 data_path = '/data2/luzhc/raw_text/'
