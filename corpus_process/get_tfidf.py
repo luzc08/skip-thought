@@ -8,7 +8,7 @@ from nltk.corpus import stopwords
 import re
 import string
 from collections import Counter
-from pre_process_para import stem_tokens,sent_tokenize_text
+# from pre_process_para import stem_tokens,sent_tokenize_text
 import cPickle as pickle
 
 data_path = '/data2/luzhc/raw_text/'
@@ -18,6 +18,21 @@ target_path = '/data2/luzhc/tfidf/'
 all_tokens = []
 
 # cnt = 0
+
+def stem_tokens(tokens, stemmer):
+   stemmed = []
+   for item in tokens:
+       stemmed.append(stemmer.stem(item))
+   return stemmed
+
+
+def sent_tokenize_text(line):
+    #sentences = []
+    sent_detector = nltk.data.load('tokenizers/punkt/english.pickle')
+    #for t in line:
+        #sents = sent_detector.tokenize(t)
+    sentences = sent_detector.tokenize(line)
+    return sentences
 
 def collect_text(filename):
     f_name = os.path.join(data_path, filename)
