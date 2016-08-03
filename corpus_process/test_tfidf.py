@@ -82,7 +82,7 @@ def collect_text(filename):
 # t_folders = os.listdir(target_path)
 all_tokens = collect_text('CHI2015.txt')
 
-print all_tokens
+# print all_tokens
 # for filename in folders:
 #     tmp = collect_text(filename)
 #     if tmp:
