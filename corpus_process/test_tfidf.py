@@ -42,9 +42,9 @@ def collect_text(filename):
     f_name = os.path.join(data_path, filename)
     print f_name + ' ? '
     # print 'processing', f_name
-    tokens = []
+    all_tokens = []
     if not os.path.isfile(f_name):
-        return tokens
+        return all_tokens
     for line in open(f_name):
         #print line
         sentences = sent_tokenize_text(line)
@@ -56,10 +56,10 @@ def collect_text(filename):
             stems = stem_tokens(tokens, stemmer)
             # if cnt%10 == 0:
             #     print stems
-            tokens = tokens + stems
+            all_tokens = all_tokens + stems
 
 
-    return tokens
+    return all_tokens
             # all_tokens = all_tokens + stems
             # new_line = ' '.join(stems)
             # new_line = ' '.join(tokens)
