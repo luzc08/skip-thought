@@ -93,11 +93,12 @@ for filename in folders:
     # if tmp:
     #     all_tokens = all_tokens + tmp
 
+print "all tokens got!"
 tfidf = TfidfVectorizer(tokenizer=tokenize, stop_words='english')
 tfs = tfidf.fit_transform(token_dict.values())
 
 pickle.dump( token_dict, open( target_path+"token_dict.p", "wb" ) )
-pickle.dump( token_dict, open( tfs+"tfidf.p", "wb" ) )
+pickle.dump( tfs, open( target_path+"tfidf.p", "wb" ) )
 
 feature_names = tfidf.get_feature_names()
 print feature_names
