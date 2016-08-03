@@ -56,8 +56,9 @@ def collect_text(filename):
             stems = stem_tokens(tokens, stemmer)
             # if cnt%10 == 0:
             #     print stems
+            tokens = tokens + stems
 
-    tokens = tokens + stems
+
     return tokens
             # all_tokens = all_tokens + stems
             # new_line = ' '.join(stems)
