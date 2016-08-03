@@ -46,7 +46,7 @@ def collect_text(filename):
     if not os.path.isfile(f_name):
         return tokens
     for line in open(f_name):
-        print line
+        #print line
         sentences = sent_tokenize_text(line)
         for t_sent in sentences:
             # cnt += 1
