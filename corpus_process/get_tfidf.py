@@ -89,6 +89,8 @@ t_folders = os.listdir(target_path)
 
 for filename in folders:
     token_dict[filename] = collect_text(filename)
+    if filename=="CHI2015":
+        print token_dict[filename]
     # tmp = collect_text(filename)
     # if tmp:
     #     all_tokens = all_tokens + tmp
