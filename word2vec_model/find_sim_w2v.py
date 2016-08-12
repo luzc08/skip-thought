@@ -14,7 +14,7 @@ if __name__ == "__main__":
         if x == '':
             x = raw_input('Please enter word to test:')
 
-        pos = [x];
+        pos = [x]
     #model.accuracy('word2vec_model/q_w.txt')
     #model.accuracy('word2vec_model/q_p.txt')
 
